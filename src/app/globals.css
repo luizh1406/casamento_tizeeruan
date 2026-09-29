@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #faf7f2;
+  --color-paper: #fffdf9;
+  --color-sand: #efe6da;
+  --color-blush: #f1e4d8;
+  --color-ink: #2b2622;
+  --color-muted: #7a6f66;
+  --color-gold: #a8875a;
+  --color-gold-dark: #8a6d43;
+  --color-line: #e4d9cb;
+  --color-sage: #7f8b78;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection {
+  background: var(--color-gold);
+  color: #fff;
+}
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* ---------- tipografia ---------- */
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  font-weight: 400;
+}
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  padding: 0 1.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-solid {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-solid:hover:not(:disabled) {
+  background: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-light {
+  background: rgba(255, 253, 249, 0.96);
+  color: var(--color-ink);
+  border-color: transparent;
+}
+.btn-light:hover {
+  background: #fff;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+}
+.btn-outline-light {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+}
+.btn-outline-light:hover {
+  background: #fff;
+  color: var(--color-ink);
+}
+.btn-sm {
+  min-height: 2.75rem;
+  padding: 0 1.3rem;
+  font-size: 0.7rem;
+}
+
+/* ---------- formulários ---------- */
+.field label,
+.label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.35rem;
+  font-weight: 400;
+}
+.input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+  font-size: 1rem; /* 16px evita zoom no iOS */
+  font-weight: 300;
+  color: var(--color-ink);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(168, 135, 90, 0.15);
+}
+.input[aria-invalid="true"] {
+  border-color: #b4483d;
+}
+textarea.input {
+  resize: vertical;
+  min-height: 6rem;
+}
+.err {
+  color: #b4483d;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------- reveal ao rolar ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- hero ---------- */
+@keyframes slowzoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.1); }
+}
+.hero-img {
+  animation: slowzoom 28s ease-in-out infinite alternate;
+}
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.fadeup {
+  opacity: 0;
+  animation: fadeup 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* contagem regressiva */
+@keyframes tick {
+  0% { transform: translateY(6px); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+.tick {
+  animation: tick 0.5s ease;
+  display: inline-block;
+}
+
+/* parallax sutil nas fotos */
+.parallax {
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.photo-frame:hover .parallax {
+  transform: scale(1.04);
+}
+
+/* feedback ao copiar */
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.pop {
+  animation: pop 0.45s ease;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.14); }
+  60% { transform: scale(1.02); }
+}
+.heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+/* modal */
+@keyframes sheetin {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.sheet {
+  animation: sheetin 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fadein 0.35s ease;
+}
+
+/* faq */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .plus {
+  transform: rotate(45deg);
+}
+.plus {
+  transition: transform 0.3s ease;
+}
+
+/* timeline */
+.tl-line {
+  background: linear-gradient(to bottom, transparent, var(--color-gold) 12%, var(--color-gold) 88%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .fadeup { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .hero-img, .heartbeat, .tick, .pop, .sheet { animation: none !important; }
+}
