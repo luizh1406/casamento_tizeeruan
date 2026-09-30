@@ -1,12 +1,11 @@
 import { query } from "@/server/db";
 import { getSettings } from "@/server/settings";
 import { formatDateLong, formatDateShort, formatWeekday, weddingTimestamp } from "@/lib/format";
-import { mapsEmbed, mapsLink, whatsappLink } from "@/lib/site";
+import { whatsappLink } from "@/lib/site";
 import type { Gift } from "@/lib/types";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 import Countdown from "@/components/Countdown";
-import Gallery from "@/components/Gallery";
 import RsvpForm from "@/components/RsvpForm";
 import Gifts, { type GiftCard } from "@/components/Gifts";
 
@@ -75,135 +74,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ---------------- NOSSA HISTÓRIA ---------------- */}
-        <section id="historia" className="px-5 py-24 md:py-36">
-          <div className="mx-auto max-w-6xl">
-            <SectionTitle eyebrow="Do primeiro olhar ao sim" title={s.story.title} />
-            <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
-              <Reveal className="photo-frame relative mx-auto w-full max-w-md">
-                <div className="absolute -bottom-4 -right-4 h-full w-full rounded-t-[12rem] rounded-b-3xl border border-gold/50" aria-hidden />
-                <div className="relative aspect-[4/5] overflow-hidden rounded-t-[12rem] rounded-b-3xl bg-sand">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.story.image} alt="Os noivos" loading="lazy" decoding="async" className="parallax h-full w-full object-cover" />
-                </div>
-              </Reveal>
-              <div className="space-y-10">
-                <Reveal>
-                  <p className="eyebrow">01</p>
-                  <h3 className="h-display mt-2 text-3xl md:text-4xl">{s.story.meetingTitle}</h3>
-                  <p className="mt-3 text-muted">{s.story.meetingText}</p>
-                </Reveal>
-                <Reveal delay={120}>
-                  <p className="eyebrow">02</p>
-                  <h3 className="h-display mt-2 text-3xl md:text-4xl">{s.story.proposalTitle}</h3>
-                  <p className="mt-3 text-muted">{s.story.proposalText}</p>
-                </Reveal>
-                <Reveal delay={240}>
-                  <blockquote className="h-display border-l border-gold pl-6 text-2xl italic leading-snug text-ink/85 md:text-3xl">
-                    {s.story.message}
-                  </blockquote>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------------- NOSSO GRANDE DIA ---------------- */}
-        <section id="grande-dia" className="bg-blush/60 px-5 py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <SectionTitle eyebrow="Salve a data" title="Nosso grande dia" />
-            <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-              <Reveal className="space-y-8 text-center md:text-left">
-                <div>
-                  <p className="eyebrow">Data</p>
-                  <p className="h-display mt-2 text-3xl capitalize md:text-4xl">{formatWeekday(s.weddingDate)}</p>
-                  <p className="h-display text-3xl md:text-4xl">{dateLong}</p>
-                </div>
-                <div>
-                  <p className="eyebrow">Horário</p>
-                  <p className="h-display mt-2 text-3xl md:text-4xl">{s.weddingTime.replace(":", "h")}</p>
-                </div>
-                <div>
-                  <p className="eyebrow">Local</p>
-                  <p className="h-display mt-2 text-3xl md:text-4xl">{s.venue.name}</p>
-                  <p className="mt-1 text-muted">{s.venue.address}</p>
-                </div>
-                <a href={mapsLink(s)} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
-                  Como chegar
-                </a>
-              </Reveal>
-              <Reveal delay={150}>
-                <div className="aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-sand md:aspect-auto md:h-full md:min-h-[22rem]">
-                  <iframe
-                    title="Mapa do local do casamento"
-                    src={mapsEmbed(s)}
-                    className="h-full w-full border-0 grayscale-[0.25]"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    allowFullScreen
-                  />
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------------- PROGRAMAÇÃO ---------------- */}
-        {s.timeline.length > 0 && (
-          <section id="programacao" className="px-5 py-24 md:py-36">
-            <div className="mx-auto max-w-2xl">
-              <SectionTitle eyebrow="Passo a passo" title="Programação" />
-              <ol className="relative">
-                <span className="tl-line absolute bottom-0 left-[5rem] top-0 w-px sm:left-1/2" aria-hidden />
-                {s.timeline.map((t, i) => (
-                  <Reveal as="li" key={i} delay={i * 60} className="relative grid grid-cols-[4rem_1fr] items-start gap-x-8 pb-12 last:pb-0 sm:grid-cols-[1fr_1fr] sm:gap-x-16">
-                    <span className="h-display pt-0.5 text-right text-3xl text-gold-dark sm:text-4xl">{t.time}</span>
-                    <span className="absolute left-[5rem] top-4 h-2.5 w-2.5 -translate-x-1/2 rounded-full border border-gold bg-ivory sm:left-1/2" aria-hidden />
-                    <div>
-                      <h3 className="h-display text-2xl sm:text-3xl">{t.title}</h3>
-                      {t.description && <p className="mt-1 text-sm text-muted">{t.description}</p>}
-                    </div>
-                  </Reveal>
-                ))}
-              </ol>
-            </div>
-          </section>
-        )}
-
-        {/* ---------------- DRESS CODE ---------------- */}
-        {s.dressCode.enabled && (
-          <section id="traje" className="bg-ink px-5 py-24 text-paper md:py-32">
-            <Reveal className="mx-auto max-w-3xl text-center">
-              <p className="eyebrow !text-gold">Dress code</p>
-              <h2 className="h-display mt-4 text-5xl md:text-6xl">Traje: {s.dressCode.title}</h2>
-              <div className="mx-auto mt-6 h-px w-12 bg-gold" />
-              <p className="mx-auto mt-6 max-w-xl text-paper/75">{s.dressCode.text}</p>
-              {s.dressCode.tips.length > 0 && (
-                <ul className="mx-auto mt-10 grid max-w-2xl gap-4 text-left sm:grid-cols-3">
-                  {s.dressCode.tips.map((t, i) => (
-                    <li key={i} className="rounded-2xl border border-paper/15 p-5 text-sm text-paper/80">
-                      <span className="h-display mb-2 block text-2xl text-gold">0{i + 1}</span>
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Reveal>
-          </section>
-        )}
-
-        {/* ---------------- GALERIA ---------------- */}
-        {s.gallery.length > 0 && (
-          <section id="galeria" className="px-5 py-24 md:py-36">
-            <div className="mx-auto max-w-6xl">
-              <SectionTitle eyebrow="Momentos" title="Galeria" sub={s.social.hashtag || undefined} />
-              <Reveal>
-                <Gallery items={s.gallery} />
-              </Reveal>
-            </div>
-          </section>
-        )}
-
         {/* ---------------- RSVP ---------------- */}
         <section id="presenca" className="bg-blush/60 px-5 py-24 md:py-32">
           <div className="mx-auto max-w-6xl">
@@ -232,25 +102,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ---------------- FAQ ---------------- */}
-        {s.faq.length > 0 && (
-          <section id="faq" className="bg-blush/60 px-5 py-24 md:py-32">
-            <div className="mx-auto max-w-3xl">
-              <SectionTitle eyebrow="Dúvidas" title="Perguntas frequentes" />
-              <Reveal className="divide-y divide-line border-y border-line">
-                {s.faq.map((f, i) => (
-                  <details key={i} className="group py-1">
-                    <summary className="flex min-h-14 items-center justify-between gap-6 py-3">
-                      <span className="h-display text-xl md:text-2xl">{f.q}</span>
-                      <span className="plus text-2xl text-gold" aria-hidden>+</span>
-                    </summary>
-                    <p className="pb-5 pr-10 text-muted">{f.a}</p>
-                  </details>
-                ))}
-              </Reveal>
-            </div>
-          </section>
-        )}
       </main>
 
       {/* ---------------- RODAPÉ ---------------- */}
@@ -271,6 +122,7 @@ export default async function Home() {
           </a>
         )}
         <p className="mt-12 text-xs text-muted/70">Feito com ❤️ para celebrar o amor</p>
+        <a href="/admin" className="mt-4 inline-block text-xs text-muted/70 underline underline-offset-4 hover:text-ink">Área dos noivos</a>
       </footer>
 
       {/* ---------------- WHATSAPP ---------------- */}

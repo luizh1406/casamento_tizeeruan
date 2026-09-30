@@ -38,7 +38,7 @@ export default function SettingsForm({ initial }: { initial: Settings }) {
   const [saving, setSaving] = useState(false);
 
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setS((p) => ({ ...p, [k]: v }));
-  const nest = <K extends "story" | "venue" | "dressCode" | "pix" | "whatsapp" | "social">(k: K, patch: Partial<Settings[K]>) =>
+  const nest = <K extends "venue" | "dressCode" | "pix" | "whatsapp" | "social">(k: K, patch: Partial<Settings[K]>) =>
     setS((p) => ({ ...p, [k]: { ...p[k], ...patch } }));
 
   async function save(e: React.FormEvent) {
@@ -80,17 +80,7 @@ export default function SettingsForm({ initial }: { initial: Settings }) {
 
       <Card title="Fotos principais" note="Ao enviar, a foto é otimizada automaticamente (máx. 2000 px).">
         <ImageField label="Foto da página inicial (Hero)" value={s.heroImage} onChange={(v) => set("heroImage", v)} />
-        <ImageField label="Foto da seção Nossa história" value={s.story.image} onChange={(v) => nest("story", { image: v })} />
         <ImageField label="Imagem de compartilhamento (WhatsApp). Vazio = usa a foto principal" value={s.seoImage} onChange={(v) => set("seoImage", v)} />
-      </Card>
-
-      <Card title="Nossa história">
-        <Text label="Título da seção" value={s.story.title} onChange={(v) => nest("story", { title: v })} />
-        <Text label="Como nos conhecemos — título" value={s.story.meetingTitle} onChange={(v) => nest("story", { meetingTitle: v })} />
-        <Text area label="Como nos conhecemos — texto" value={s.story.meetingText} onChange={(v) => nest("story", { meetingText: v })} />
-        <Text label="O pedido — título" value={s.story.proposalTitle} onChange={(v) => nest("story", { proposalTitle: v })} />
-        <Text area label="O pedido — texto" value={s.story.proposalText} onChange={(v) => nest("story", { proposalText: v })} />
-        <Text area label="Mensagem aos convidados" value={s.story.message} onChange={(v) => nest("story", { message: v })} />
       </Card>
 
       <Card title="Local e mapa">
@@ -121,21 +111,6 @@ export default function SettingsForm({ initial }: { initial: Settings }) {
         <Text label="Traje" value={s.dressCode.title} onChange={(v) => nest("dressCode", { title: v })} />
         <Text area label="Texto" value={s.dressCode.text} onChange={(v) => nest("dressCode", { text: v })} />
         <Text area label="Dicas (uma por linha)" value={s.dressCode.tips.join("\n")} onChange={(v) => nest("dressCode", { tips: v.split("\n").map((x) => x.trim()).filter(Boolean) })} />
-      </Card>
-
-      <Card title="Galeria">
-        {s.gallery.map((g, i) => (
-          <div key={i} className="rounded-xl border border-line p-3">
-            <ImageField label={`Foto ${i + 1}`} value={g.src} onChange={(v) => set("gallery", s.gallery.map((x, j) => (j === i ? { ...x, src: v } : x)))} />
-            <div className="mt-2 flex items-center gap-2 text-sm">
-              <input className="input !min-h-10 flex-1 !py-2" placeholder="Descrição (acessibilidade)" value={g.alt} onChange={(e) => set("gallery", s.gallery.map((x, j) => (j === i ? { ...x, alt: e.target.value } : x)))} />
-              <button type="button" onClick={() => set("gallery", move(s.gallery, i, -1))} aria-label="Mover para cima">↑</button>
-              <button type="button" onClick={() => set("gallery", move(s.gallery, i, 1))} aria-label="Mover para baixo">↓</button>
-              <button type="button" className="text-[#b4483d]" onClick={() => set("gallery", s.gallery.filter((_, j) => j !== i))} aria-label="Remover">✕</button>
-            </div>
-          </div>
-        ))}
-        <button type="button" className="btn btn-ghost btn-sm" onClick={() => set("gallery", [...s.gallery, { src: "", alt: "Os noivos" }])}>Adicionar foto</button>
       </Card>
 
       <Card title="Perguntas frequentes">

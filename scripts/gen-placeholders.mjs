@@ -14,13 +14,6 @@ ${arch ? `<path d="M${w * 0.32} ${h} V${h * 0.55} a${w * 0.18} ${w * 0.18} 0 0 1
   writeFileSync(`public/placeholders/${name}.svg`, svg);
 }
 photo("hero", 1600, 1000, "#d9c6b0", "#8f7a66", "#f6e9d8");
-photo("story", 900, 1100, "#e7d7c5", "#a98f78", "#fbf1e4");
-photo("g1", 800, 1100, "#dccbb8", "#9b846f", "#f7ebdc");
-photo("g2", 900, 700, "#e9dccd", "#b39a83", "#fff4e6", false);
-photo("g3", 800, 800, "#cdbba6", "#8a735f", "#f2e1cd");
-photo("g4", 800, 1000, "#e2d3c1", "#a48b75", "#faeedd");
-photo("g5", 1000, 700, "#d6c5b1", "#957e69", "#f5e7d6", false);
-photo("g6", 800, 1100, "#e5d6c4", "#ad957e", "#fdf2e3");
 
 const stroke = `fill="none" stroke="#7a6350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
 const icons = {

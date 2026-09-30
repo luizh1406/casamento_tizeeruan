@@ -50,12 +50,6 @@ export default function Gifts({ gifts, pixReady }: { gifts: GiftCard[]; pixReady
         ))}
       </div>
 
-      <div className="mt-8 text-center">
-        <button type="button" className="text-sm uppercase tracking-[0.2em] text-gold-dark underline underline-offset-8 hover:text-ink" onClick={() => setTarget({ gift: null, forceCustom: true })}>
-          Quero escolher outro valor
-        </button>
-      </div>
-
       {target && <GiftModal target={target} pixReady={pixReady} onClose={() => setTarget(null)} />}
     </>
   );

@@ -2,13 +2,8 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  ["#historia", "Nossa história"],
-  ["#grande-dia", "O grande dia"],
-  ["#programacao", "Programação"],
-  ["#galeria", "Galeria"],
   ["#presenca", "Confirmar presença"],
   ["#presentes", "Presentes"],
-  ["#faq", "Dúvidas"],
 ];
 
 export default function Nav({ initials }: { initials: string }) {

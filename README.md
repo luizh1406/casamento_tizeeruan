@@ -17,7 +17,7 @@ Sem `DATABASE_URL`, o dev usa um Postgres embutido (PGlite, em `./.data`). Login
 ## Arquitetura
 ```
 src/app/            páginas (site, /admin) e rotas de API (/api/*)
-src/components/     UI reutilizável (Gifts, RsvpForm, Gallery, Countdown…) e /admin
+src/components/     UI reutilizável (Gifts, RsvpForm, Countdown…) e /admin
 src/server/         db (pg/PGlite), schema, auth/sessão (JWT), pix (BR Code + QR), settings, http (rate-limit, CSRF)
 src/lib/            tipos, formatação, limites (compartilhado)
 ```

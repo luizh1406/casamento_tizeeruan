@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice">
-<defs>
-<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dccd"/><stop offset="1" stop-color="#b39a83"/></linearGradient>
-<radialGradient id="r" cx=".3" cy=".25" r=".8"><stop offset="0" stop-color="#fff4e6" stop-opacity=".9"/><stop offset="1" stop-color="#fff4e6" stop-opacity="0"/></radialGradient>
-</defs>
-<rect width="900" height="700" fill="url(#g)"/><rect width="900" height="700" fill="url(#r)"/>
-
-<circle cx="702" cy="140" r="49.00000000000001" fill="#fff" fill-opacity=".35"/>
-</svg>
