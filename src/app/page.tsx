@@ -90,7 +90,7 @@ export default async function Home() {
             <SectionTitle
               eyebrow="Lista de presentes"
               title="Presenteie os noivos"
-              sub="Nossos presentes são simbólicos: cada um representa um pedacinho da nossa lua de mel. Escolha o seu e envie o valor por Pix, direto para nós."
+              sub="Nossos presentes são simbólicos. Escolha o seu e envie o valor por Pix, direto para nós."
             />
             {gifts.length > 0 ? (
               <Reveal>
@@ -121,7 +121,7 @@ export default async function Home() {
             Instagram
           </a>
         )}
-        <p className="mt-12 text-xs text-muted/70">Feito com ❤️ para celebrar o amor</p>
+        <p className="mt-12 text-xs text-muted/70">Feito com ❤️ pelos Padrinhos Luiz e Julia</p>
         <a href="/admin" className="mt-4 inline-block text-xs text-muted/70 underline underline-offset-4 hover:text-ink">Área dos noivos</a>
       </footer>
 
