@@ -10,16 +10,6 @@ export function siteUrl(): string {
   return u.replace(/\/$/, "");
 }
 
-export function mapsLink(s: Settings): string {
-  if (s.venue.mapsUrl) return s.venue.mapsUrl;
-  const q = encodeURIComponent(`${s.venue.name} ${s.venue.address}`.trim());
-  return `https://www.google.com/maps/search/?api=1&query=${q}`;
-}
-export function mapsEmbed(s: Settings): string {
-  if (s.venue.embedUrl) return s.venue.embedUrl;
-  const q = encodeURIComponent(`${s.venue.name} ${s.venue.address}`.trim());
-  return `https://www.google.com/maps?q=${q}&output=embed`;
-}
 export function whatsappLink(s: Settings): string | null {
   let n = s.whatsapp.number.replace(/\D/g, "");
   if (n.length < 10) return null;

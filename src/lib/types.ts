@@ -1,5 +1,3 @@
-export interface TimelineItem { time: string; title: string; description?: string }
-export interface FaqItem { q: string; a: string }
 
 export interface Settings {
   brideName: string;
@@ -9,10 +7,6 @@ export interface Settings {
   rsvpDeadline: string; // YYYY-MM-DD
   heroTagline: string;
   heroImage: string;
-  venue: { name: string; address: string; mapsUrl: string; embedUrl: string };
-  timeline: TimelineItem[];
-  dressCode: { enabled: boolean; title: string; text: string; tips: string[] };
-  faq: FaqItem[];
   pix: { key: string; receiverName: string; city: string };
   whatsapp: { number: string; message: string };
   social: { instagram: string; hashtag: string };
