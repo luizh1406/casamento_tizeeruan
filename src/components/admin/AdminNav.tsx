@@ -20,7 +20,7 @@ export default function AdminNav() {
   }
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 md:px-6">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 sm:gap-4 md:px-6">
         <span className="h-display hidden py-3 text-2xl md:block">Painel</span>
         <nav className="flex flex-1 gap-1 overflow-x-auto [scrollbar-width:none]" aria-label="Painel">
           {ITEMS.map(([href, label]) => {
@@ -36,8 +36,8 @@ export default function AdminNav() {
             );
           })}
         </nav>
-        <Link href="/" target="_blank" className="hidden text-xs uppercase tracking-[0.18em] text-muted hover:text-ink sm:block">Ver site</Link>
-        <button onClick={logout} className="text-xs uppercase tracking-[0.18em] text-gold-dark">Sair</button>
+        <Link href="/" target="_blank" className="shrink-0 text-xs uppercase tracking-[0.18em] text-muted hover:text-ink">Ver site</Link>
+        <button onClick={logout} className="shrink-0 text-xs uppercase tracking-[0.18em] text-gold-dark">Sair</button>
       </div>
     </header>
   );
