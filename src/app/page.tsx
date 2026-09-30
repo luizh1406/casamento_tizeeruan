@@ -121,8 +121,8 @@ export default async function Home() {
             Instagram
           </a>
         )}
-        <p className="mt-12 text-xs text-muted/70">Feito com ❤️ pelos Padrinhos Luiz e Julia</p>
-        <a href="/admin" className="mt-4 inline-block text-xs text-muted/70 underline underline-offset-4 hover:text-ink">Área dos noivos</a>
+        <p className="mt-12 text-base text-muted">Feito com ❤️ pelos Padrinhos Luiz e Julia</p>
+        <a href="/admin" className="mt-4 inline-block text-base text-muted underline underline-offset-4 hover:text-ink">Área dos noivos</a>
       </footer>
 
       {/* ---------------- WHATSAPP ---------------- */}
